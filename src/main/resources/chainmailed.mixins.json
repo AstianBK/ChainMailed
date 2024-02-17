@@ -5,7 +5,9 @@
   "minVersion": "0.8",
   "refmap": "chainmailed.refmap.json",
   "mixins": [
-    "ArmorItemMixin"
+    "ArmorItemMixin",
+    "ItemStackMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
