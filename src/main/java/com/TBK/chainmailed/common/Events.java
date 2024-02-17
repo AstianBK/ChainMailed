@@ -68,7 +68,7 @@ public class Events {
                     event.setAmount((float) (Math.max(d1,1.0F)));
                     victim.playSound(CMSounds.CHAINMAIL_BLOCK.get());
                     if(victim instanceof Player player){
-                        player.level().playSound(null,victim,CMSounds.CHAINMAIL_BLOCK.get(), SoundSource.NEUTRAL,2.5F,1.0F);
+                        player.level().playSound(null,victim,CMSounds.CHAINMAIL_BLOCK.get(), SoundSource.PLAYERS,1.5F,1.0F);
                     }
                 }
             }
