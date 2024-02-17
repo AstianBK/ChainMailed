@@ -1,4 +1,4 @@
-package com.TBK.chainmailed.common.deathentitysystem.network;
+package com.TBK.chainmailed.network;
 
 import com.TBK.chainmailed.common.Events;
 import net.minecraft.client.Minecraft;
@@ -26,7 +26,7 @@ public class PacketSyncSlashResistToClient {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context ctx = supplier.get();
         ctx.enqueueWork(() -> {
-            Minecraft.getInstance().player.getAttribute(Events.SLASH_RESIST).setBaseValue(armor);
+            Minecraft.getInstance().player.getAttribute(Events.SLASH_RESISTANCE).setBaseValue(armor);
         });
         return true;
     }

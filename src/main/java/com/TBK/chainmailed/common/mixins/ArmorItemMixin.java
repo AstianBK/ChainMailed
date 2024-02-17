@@ -1,6 +1,5 @@
 package com.TBK.chainmailed.common.mixins;
 
-import com.TBK.chainmailed.ChainMailed;
 import com.TBK.chainmailed.common.Events;
 import com.TBK.chainmailed.common.api.IReinforcedChain;
 import com.google.common.collect.ImmutableMultimap;
@@ -8,7 +7,6 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -39,6 +37,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
     @Shadow @Final protected float knockbackResistance;
 
     @Shadow @Final private int defense;
+    private final double slash_resistance=0.5D;
 
     public ArmorItemMixin(Properties p_41383_) {
         super(p_41383_);
@@ -59,7 +58,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "armor modifier", cc, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", (double)this.toughness, AttributeModifier.Operation.ADDITION));
-        builder.put(Events.SLASH_RESIST,new AttributeModifier("Splash Resist",0.25D, AttributeModifier.Operation.ADDITION));
+        builder.put(Events.SLASH_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.slash_resistance, AttributeModifier.Operation.ADDITION));
         if (this.knockbackResistance > 0) {
             builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", (double)this.knockbackResistance, AttributeModifier.Operation.ADDITION));
         }
@@ -75,7 +74,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
         super.appendHoverText(p_41421_, p_41422_, p_41423_, p_41424_);
         if(hasChainmailed(p_41421_.getOrCreateTag())){
             p_41423_.add(Component.translatable("itemGroup.combat").withStyle(ChatFormatting.BLUE));
-            p_41423_.add(Component.translatable("armoritem.chainmailed.has_chainmailed").withStyle(ChatFormatting.BLUE));
+            p_41423_.add(Component.translatable("armoritem.chainmailed.has_chainmailed").withStyle(ChatFormatting.GRAY));
         }
     }
 

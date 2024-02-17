@@ -1,6 +1,7 @@
 package com.TBK.chainmailed;
 
 import com.TBK.chainmailed.common.Events;
+import com.TBK.chainmailed.common.SyncAttribute;
 import com.TBK.chainmailed.network.PacketHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -24,10 +25,11 @@ public class ChainMailed
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.addListener(SyncAttribute::onTickEvent);
         PacketHandler.registerMessages();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, ChainMailed.MODID);
-        ATTRIBUTES.register("slash_resist",()-> Events.SLASH_RESIST);
+        ATTRIBUTES.register("slash_resist",()-> Events.SLASH_RESISTANCE);
         ATTRIBUTES.register(eventBus);
     }
 

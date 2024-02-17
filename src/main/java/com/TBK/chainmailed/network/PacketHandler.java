@@ -1,6 +1,5 @@
 package com.TBK.chainmailed.network;
 import com.TBK.chainmailed.ChainMailed;
-import com.TBK.chainmailed.common.deathentitysystem.network.PacketSyncSlashResistToClient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
