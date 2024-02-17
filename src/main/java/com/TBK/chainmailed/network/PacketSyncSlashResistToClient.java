@@ -26,7 +26,7 @@ public class PacketSyncSlashResistToClient {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context ctx = supplier.get();
         ctx.enqueueWork(() -> {
-            Minecraft.getInstance().player.getAttribute(Events.SLASH_RESISTANCE).setBaseValue(armor);
+            Minecraft.getInstance().player.getAttribute(Events.IMPACT_RESISTANCE).setBaseValue(armor);
         });
         return true;
     }

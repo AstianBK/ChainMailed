@@ -8,19 +8,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
@@ -31,7 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class Events {
-    public static final Attribute SLASH_RESISTANCE = new RangedAttribute("Slash Resistance",0.0d,-Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Attribute IMPACT_RESISTANCE = new RangedAttribute("attribute.impact_resistance",0.0d,-Double.MAX_VALUE, Double.MAX_VALUE);
 
     @SubscribeEvent
     public static void RightClickOnItem(PlayerInteractEvent.RightClickItem event){
@@ -54,8 +49,8 @@ public class Events {
     @SubscribeEvent
     public static void onTickEvent(TickEvent.LevelTickEvent event){
         event.level.players().forEach(player -> {
-            if (player instanceof ServerPlayer serverPlayer && serverPlayer.getAttribute(Events.SLASH_RESISTANCE) != null) {
-                float souls = (float) serverPlayer.getAttribute(Events.SLASH_RESISTANCE).getValue();
+            if (player instanceof ServerPlayer serverPlayer && serverPlayer.getAttribute(Events.IMPACT_RESISTANCE) != null) {
+                float souls = (float) serverPlayer.getAttribute(Events.IMPACT_RESISTANCE).getValue();
                 PacketHandler.sendToPlayer(new PacketSyncSlashResistToClient(souls), serverPlayer);
             }
         });
@@ -64,9 +59,9 @@ public class Events {
     @SubscribeEvent
     public static void onHurtEvent(LivingHurtEvent event){
         LivingEntity victim=event.getEntity();
-        if(victim.getAttribute(Events.SLASH_RESISTANCE)!=null){
+        if(victim.getAttribute(Events.IMPACT_RESISTANCE)!=null){
             float f0 = event.getAmount();
-            double d0 = victim.getAttribute(Events.SLASH_RESISTANCE).getValue();
+            double d0 = victim.getAttribute(Events.IMPACT_RESISTANCE).getValue();
             if(d0>0){
                 if(event.getSource().is(DamageTypes.MOB_ATTACK) || event.getSource().is(DamageTypes.PLAYER_ATTACK) || event.getSource().is(DamageTypes.GENERIC)){
                     double d1 = f0-d0;
@@ -83,6 +78,6 @@ public class Events {
 
     @SubscribeEvent
     public static void onEntityAttributeModificationEvent(EntityAttributeModificationEvent event) {
-        event.add(EntityType.PLAYER, Events.SLASH_RESISTANCE);
+        event.add(EntityType.PLAYER, Events.IMPACT_RESISTANCE);
     }
 }

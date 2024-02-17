@@ -58,7 +58,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "armor modifier", cc, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", (double)this.toughness, AttributeModifier.Operation.ADDITION));
-        builder.put(Events.SLASH_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.slash_resistance, AttributeModifier.Operation.ADDITION));
+        builder.put(Events.IMPACT_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.slash_resistance, AttributeModifier.Operation.ADDITION));
         if (this.knockbackResistance > 0) {
             builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", (double)this.knockbackResistance, AttributeModifier.Operation.ADDITION));
         }

@@ -29,9 +29,8 @@ public class ChainMailed
         MinecraftForge.EVENT_BUS.addListener(SyncAttribute::onTickEvent);
         CMSounds.register(eventBus);
         PacketHandler.registerMessages();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, ChainMailed.MODID);
-        ATTRIBUTES.register("slash_resist",()-> Events.SLASH_RESISTANCE);
+        ATTRIBUTES.register("impact_resistance",()-> Events.IMPACT_RESISTANCE);
         ATTRIBUTES.register(eventBus);
     }
 
