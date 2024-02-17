@@ -127,6 +127,7 @@ public abstract class PlayerMixin extends Player {
                                         if (livingentity != this && livingentity != p_36347_ && !this.isAlliedTo(livingentity) && (!(livingentity instanceof ArmorStand) || !((ArmorStand)livingentity).isMarker()) && this.distanceToSqr(livingentity) < entityReachSq) {
                                             livingentity.knockback((double)0.4F, (double)Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
                                             livingentity.hurt(this.damageSources().playerAttack(this), f3);
+                                            livingentity.playSound(SoundEvents.CHICKEN_HURT);
                                         }
                                     }
                                 }

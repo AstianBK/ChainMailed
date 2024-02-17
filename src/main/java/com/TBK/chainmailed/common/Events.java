@@ -67,6 +67,7 @@ public class Events {
             double d0 = victim.getAttribute(Events.SLASH_RESIST).getValue();
             if(event.getSource().is(DamageTypes.MOB_ATTACK) || event.getSource().is(DamageTypes.PLAYER_ATTACK) || event.getSource().is(DamageTypes.GENERIC)){
                 event.setAmount((float) (f0-d0));
+                victim.playSound(SoundEvents.CHICKEN_HURT);
             }
         }
 
