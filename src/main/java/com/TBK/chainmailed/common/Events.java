@@ -7,6 +7,7 @@ import com.TBK.chainmailed.network.PacketSyncSlashResistToClient;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageType;
@@ -71,6 +72,9 @@ public class Events {
                     double d1 = f0-d0;
                     event.setAmount((float) (Math.max(d1,1.0F)));
                     victim.playSound(CMSounds.CHAINMAIL_BLOCK.get());
+                    if(victim instanceof Player player){
+                        player.level().playSound(null,victim,CMSounds.CHAINMAIL_BLOCK.get(), SoundSource.NEUTRAL,2.5F,1.0F);
+                    }
                 }
             }
         }
