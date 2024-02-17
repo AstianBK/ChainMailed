@@ -1,4 +1,4 @@
 {
-  "armoritem.chainmailed.has_chainmailed" : "Chainmailed"
-
+  "armoritem.chainmailed.has_chainmailed" : "Chainmailed",
+  "sounds.chainmailed.chainmail_block" : "Chainmail Block"
 }

@@ -1,0 +1,8 @@
+{
+  "tamer_whistle": {
+    "subtitle": "sounds.chainmailed.chainmail_block",
+    "sounds": [
+      "chainmailed:chainmail_block"
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 package com.TBK.chainmailed;
 
 import com.TBK.chainmailed.common.Events;
+import com.TBK.chainmailed.common.sound.CMSounds;
 import com.TBK.chainmailed.network.PacketHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -24,6 +25,7 @@ public class ChainMailed
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MinecraftForge.EVENT_BUS.register(this);
+        CMSounds.register(eventBus);
         PacketHandler.registerMessages();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, ChainMailed.MODID);
