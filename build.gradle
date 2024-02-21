@@ -23,7 +23,7 @@ mixin {
     add sourceSets.main, mod_id+".refmap.json"
 }
 
-version = version
+version = mod_version
 group = mod_group_id
 archivesBaseName = mod_id
 
@@ -133,7 +133,9 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "examplemodsareus",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": mod_id+".mixins.json"
+
         ])
     }
 }
