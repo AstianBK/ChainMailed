@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.TBK.chainmailed.common.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "chainmailed.refmap.json",
+  "mixins": [
+    "ArmorItemMixin",
+    "ItemStackMixin",
+    "PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
