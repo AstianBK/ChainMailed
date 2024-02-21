@@ -124,10 +124,11 @@ public abstract class PlayerMixin extends Player {
                                 float f3 = 1.0F + EnchantmentHelper.getSweepingDamageRatio(this) * f;
                                 for(LivingEntity livingentity : this.level().getEntitiesOfClass(LivingEntity.class, this.getItemInHand(InteractionHand.MAIN_HAND).getSweepHitBox(this, p_36347_))) {
                                     double entityReachSq = Mth.square(this.getEntityReach());
-                                    if(this.hasntChainmailed(livingentity)){
-                                        if (livingentity != this && livingentity != p_36347_ && !this.isAlliedTo(livingentity) && (!(livingentity instanceof ArmorStand) || !((ArmorStand)livingentity).isMarker()) && this.distanceToSqr(livingentity) < entityReachSq) {
+                                    if (livingentity != this && livingentity != p_36347_ && !this.isAlliedTo(livingentity) && (!(livingentity instanceof ArmorStand) || !((ArmorStand)livingentity).isMarker()) && this.distanceToSqr(livingentity) < entityReachSq) {
+                                        if(this.hasntChainmailed(livingentity)){
                                             livingentity.knockback((double)0.4F, (double)Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
                                             livingentity.hurt(this.damageSources().playerAttack(this), f3);
+                                        }else{
                                             livingentity.playSound(CMSounds.CHAINMAIL_BLOCK.get());
                                         }
                                     }

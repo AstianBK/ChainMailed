@@ -55,7 +55,7 @@ public abstract class ItemStackMixin {
                     }
 
                     if (item instanceof ArmorItem reinforcedChain && ((IReinforcedChain)reinforcedChain).hasChainmailed(this.getOrCreateTag())) {
-                        ItemStack stack = this.getArmorForSlot(((ArmorItem)item).getEquipmentSlot());
+                        ItemStack stack = ItemStack.of(this.getOrCreateTag().getCompound("reinforcedChain"));
                         p_41624_.setItemSlot(((ArmorItem)item).getEquipmentSlot(),stack);
                     }
                     this.setDamageValue(0);
