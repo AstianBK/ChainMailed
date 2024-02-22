@@ -1,16 +1,15 @@
 package com.TBK.chainmailed.common;
 
 import com.TBK.chainmailed.common.api.IReinforcedChain;
+import com.TBK.chainmailed.common.config.BKConfig;
 import com.TBK.chainmailed.common.sound.CMSounds;
 import com.TBK.chainmailed.network.PacketHandler;
 import com.TBK.chainmailed.network.PacketSyncSlashResistToClient;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,7 +17,6 @@ import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,19 +32,21 @@ public class Events {
             Player player = event.getEntity();
             ItemStack itemStack1 = player.getOffhandItem();
             CompoundTag nbt = itemStack.getOrCreateTag();
-            if(armor instanceof IReinforcedChain reinforcedChain && !reinforcedChain.hasChainmailed(nbt) &&
-                    itemStack1.getItem() instanceof ArmorItem armorItem && armor.getMaterial()!=ArmorMaterials.CHAIN
-                    && armorItem.getMaterial() == ArmorMaterials.CHAIN && armorItem.getType().getSlot()==armor.getType().getSlot()){
-                CompoundTag tag = new CompoundTag();
-                itemStack1.save(tag);
-                nbt.put("reinforcedChain",tag);
-                itemStack1.shrink(1);
-                player.playSound(SoundEvents.SMITHING_TABLE_USE);
-            }else if(player.isShiftKeyDown() && armor instanceof IReinforcedChain reinforcedChain && reinforcedChain.hasChainmailed(nbt) && itemStack1.isEmpty()) {
-                ItemStack chainmailed=ItemStack.of(nbt.getCompound("reinforcedChain"));
-                player.setItemSlot(EquipmentSlot.OFFHAND,chainmailed);
-                nbt.remove("reinforcedChain");
-                player.playSound(SoundEvents.ANVIL_USE);
+            if(!BKConfig.chainMailedBlackList.contains(itemStack.getItem())){
+                if(armor instanceof IReinforcedChain reinforcedChain && !reinforcedChain.hasChainmailed(nbt) &&
+                        itemStack1.getItem() instanceof ArmorItem armorItem && armor.getMaterial()!=ArmorMaterials.CHAIN
+                        && armorItem.getMaterial() == ArmorMaterials.CHAIN && armorItem.getType().getSlot()==armor.getType().getSlot()){
+                    CompoundTag tag = new CompoundTag();
+                    itemStack1.save(tag);
+                    nbt.put("reinforcedChain",tag);
+                    itemStack1.shrink(1);
+                    player.playSound(SoundEvents.SMITHING_TABLE_USE);
+                }else if(player.isShiftKeyDown() && armor instanceof IReinforcedChain reinforcedChain && reinforcedChain.hasChainmailed(nbt) && itemStack1.isEmpty()) {
+                    ItemStack chainmailed=ItemStack.of(nbt.getCompound("reinforcedChain"));
+                    player.setItemSlot(EquipmentSlot.OFFHAND,chainmailed);
+                    nbt.remove("reinforcedChain");
+                    player.playSound(SoundEvents.ANVIL_USE);
+                }
             }
         }
     }
