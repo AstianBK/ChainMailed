@@ -20,7 +20,7 @@ public class BKConfig
 
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> CHAINMAILED_BLACKLIST = BUILDER
             .comment("A black list for chainmailed")
-            .defineListAllowEmpty("chainmailed_blacklist", List.of("minecraft:leather_chestplate","minecraft:leather_leggins","minecraft:leather_helmet","minecraft:leather_boots"), BKConfig::validateItemName);
+            .defineListAllowEmpty("chainmailed_blacklist", List.of("minecraft:leather_helmet","minecraft:leather_chestplate","minecraft:leather_leggings","minecraft:leather_boots"), BKConfig::validateItemName);
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
     public static List<Item> chainMailedBlackList;
