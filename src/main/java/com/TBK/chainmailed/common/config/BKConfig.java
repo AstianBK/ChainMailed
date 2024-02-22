@@ -11,7 +11,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = ChainMailed.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
