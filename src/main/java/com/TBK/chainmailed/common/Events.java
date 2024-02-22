@@ -32,6 +32,7 @@ public class Events {
             Player player = event.getEntity();
             ItemStack itemStack1 = player.getOffhandItem();
             CompoundTag nbt = itemStack.getOrCreateTag();
+            System.out.print("\ntengo :\n"+BKConfig.impactResistanceValueChainmailedBasic);
             if(!BKConfig.chainMailedBlackList.contains(itemStack.getItem())){
                 if(armor instanceof IReinforcedChain reinforcedChain && !reinforcedChain.hasChainmailed(nbt) &&
                         itemStack1.getItem() instanceof ArmorItem armorItem && armor.getMaterial()!=ArmorMaterials.CHAIN

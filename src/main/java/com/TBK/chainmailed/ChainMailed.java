@@ -23,8 +23,7 @@ public class ChainMailed
 {
     public static final String MODID = "chainmailed";
     private static final Logger LOGGER = LogUtils.getLogger();
-    public ChainMailed()
-    {
+    public ChainMailed() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(SyncAttribute::onTickEvent);
@@ -36,5 +35,4 @@ public class ChainMailed
         ATTRIBUTES.register("impact_resistance",()-> Events.IMPACT_RESISTANCE);
         ATTRIBUTES.register(eventBus);
     }
-
 }

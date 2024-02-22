@@ -2,6 +2,7 @@ package com.TBK.chainmailed.common.mixins;
 
 import com.TBK.chainmailed.common.Events;
 import com.TBK.chainmailed.common.api.IReinforcedChain;
+import com.TBK.chainmailed.common.config.BKConfig;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
@@ -37,7 +38,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
     @Shadow @Final protected float knockbackResistance;
 
     @Shadow @Final private int defense;
-    private final double slash_resistance=0.5D;
+    private final double impact_resistance = BKConfig.impactResistanceValueChainmailedBasic;
 
     public ArmorItemMixin(Properties p_41383_) {
         super(p_41383_);
@@ -58,7 +59,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "armor modifier", cc, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", (double)this.toughness, AttributeModifier.Operation.ADDITION));
-        builder.put(Events.IMPACT_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.slash_resistance, AttributeModifier.Operation.ADDITION));
+        builder.put(Events.IMPACT_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.impact_resistance, AttributeModifier.Operation.ADDITION));
         if (this.knockbackResistance > 0) {
             builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", (double)this.knockbackResistance, AttributeModifier.Operation.ADDITION));
         }
@@ -78,14 +79,6 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
     }
 
     public int getDefenseBonusForSlot(EquipmentSlot slot){
-        switch (slot){
-            case HEAD,FEET -> {
-                return 1;
-            }
-            case CHEST, LEGS -> {
-                return 2;
-            }
-        }
-        return 0;
+        return BKConfig.armorForSlotChainmailedBasic[slot.getIndex()];
     }
 }
