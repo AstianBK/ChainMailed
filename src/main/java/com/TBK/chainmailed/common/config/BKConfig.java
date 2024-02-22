@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class BKConfig
 
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> CHAINMAILED_BLACKLIST = BUILDER
             .comment("A black list for chainmailed")
-            .defineListAllowEmpty("chainmailed_blacklist", List.of("minecraft:leather_helmet","minecraft:leather_chestplate","minecraft:leather_leggings","minecraft:leather_boots"), BKConfig::validateItemName);
+            .defineListAllowEmpty("chainmailed_blacklist", new ArrayList<>(), BKConfig::validateItemName);
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
     public static List<Item> chainMailedBlackList;
