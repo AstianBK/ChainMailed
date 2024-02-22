@@ -2,7 +2,7 @@ package com.TBK.chainmailed.common;
 
 import com.TBK.chainmailed.common.api.IReinforcedChain;
 import com.TBK.chainmailed.common.config.BKConfig;
-import com.TBK.chainmailed.common.sound.CMSounds;
+import com.TBK.chainmailed.common.sound.BKSounds;
 import com.TBK.chainmailed.network.PacketHandler;
 import com.TBK.chainmailed.network.PacketSyncSlashResistToClient;
 import net.minecraft.nbt.CompoundTag;
@@ -70,9 +70,9 @@ public class Events {
                 if (event.getSource().is(DamageTypes.MOB_ATTACK) || event.getSource().is(DamageTypes.PLAYER_ATTACK) || event.getSource().is(DamageTypes.GENERIC)) {
                     double d1 = f0 - d0;
                     event.setAmount((float) (Math.max(d1, 1.0F)));
-                    victim.playSound(CMSounds.CHAINMAIL_BLOCK.get());
+                    victim.playSound(BKSounds.CHAINMAIL_BLOCK.get());
                     if (victim instanceof Player player) {
-                        player.level().playSound(null, victim, CMSounds.CHAINMAIL_BLOCK.get(), SoundSource.PLAYERS, 1.5F, 1.0F);
+                        player.level().playSound(null, victim, BKSounds.CHAINMAIL_BLOCK.get(), SoundSource.PLAYERS, 1.5F, 1.0F);
                     }
                 }
             }
