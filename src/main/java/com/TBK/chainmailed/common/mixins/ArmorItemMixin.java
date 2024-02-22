@@ -38,8 +38,6 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
     @Shadow @Final protected float knockbackResistance;
 
     @Shadow @Final private int defense;
-    private final double impact_resistance = BKConfig.impactResistanceValueChainmailedBasic;
-
     public ArmorItemMixin(Properties p_41383_) {
         super(p_41383_);
     }
@@ -59,7 +57,7 @@ public abstract class ArmorItemMixin extends Item implements IReinforcedChain {
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "armor modifier", cc, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", (double)this.toughness, AttributeModifier.Operation.ADDITION));
-        builder.put(Events.IMPACT_RESISTANCE,new AttributeModifier(uuid,"Splash Resist",this.impact_resistance, AttributeModifier.Operation.ADDITION));
+        builder.put(Events.IMPACT_RESISTANCE,new AttributeModifier(uuid,"Impact Resistance",BKConfig.impactResistanceValueChainmailedBasic, AttributeModifier.Operation.ADDITION));
         if (this.knockbackResistance > 0) {
             builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", (double)this.knockbackResistance, AttributeModifier.Operation.ADDITION));
         }

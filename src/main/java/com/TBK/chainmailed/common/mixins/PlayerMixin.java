@@ -1,6 +1,7 @@
 package com.TBK.chainmailed.common.mixins;
 
 import com.TBK.chainmailed.common.api.IReinforcedChain;
+import com.TBK.chainmailed.common.config.BKConfig;
 import com.TBK.chainmailed.common.sound.BKSounds;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.core.BlockPos;
@@ -123,7 +124,9 @@ public abstract class PlayerMixin extends Player {
                                             livingentity.knockback((double)0.4F, (double)Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
                                             livingentity.hurt(this.damageSources().playerAttack(this), f3);
                                         }else{
-                                            livingentity.playSound(BKSounds.CHAINMAIL_BLOCK.get());
+                                            if(BKConfig.soundChainmailedBlock){
+                                                livingentity.playSound(BKSounds.CHAINMAIL_BLOCK.get());
+                                            }
                                         }
                                     }
                                 }

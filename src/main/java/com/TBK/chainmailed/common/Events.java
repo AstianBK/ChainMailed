@@ -71,9 +71,11 @@ public class Events {
                 if (event.getSource().is(DamageTypes.MOB_ATTACK) || event.getSource().is(DamageTypes.PLAYER_ATTACK) || event.getSource().is(DamageTypes.GENERIC)) {
                     double d1 = f0 - d0;
                     event.setAmount((float) (Math.max(d1, 1.0F)));
-                    victim.playSound(BKSounds.CHAINMAIL_BLOCK.get());
-                    if (victim instanceof Player player) {
-                        player.level().playSound(null, victim, BKSounds.CHAINMAIL_BLOCK.get(), SoundSource.PLAYERS, 1.5F, 1.0F);
+                    if(BKConfig.soundChainmailedBlock){
+                        victim.playSound(BKSounds.CHAINMAIL_BLOCK.get());
+                        if (victim instanceof Player player) {
+                            player.level().playSound(null, victim, BKSounds.CHAINMAIL_BLOCK.get(), SoundSource.PLAYERS, 1.5F, 1.0F);
+                        }
                     }
                 }
             }
