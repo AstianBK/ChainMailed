@@ -20,17 +20,17 @@ public class BKConfig
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
     private static final ForgeConfigSpec.BooleanValue SOUND_CHAINMAILED_BLOCK = BUILDER
-            .comment("if sound is active for impact")
+            .comment("enable chainmail block sound")
             .define("sound_chainmailed_block",true);
     private static final ForgeConfigSpec.DoubleValue IMPACT_RESISTANCE_CHAINMAILED_BASIC = BUILDER
-            .comment("Impact resistance for Slot.")
+            .comment("How much base Impact Resistance chainmail armor has")
             .defineInRange("impact_resistance_chainmailed_basic",0.5D,0.1D,Double.MAX_VALUE);
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ARMOR_FOR_SLOT_CHAIMAILED_BASIC = BUILDER
-            .comment("A black list for chainmailed")
+            .comment("How much base armor chainmail armor has")
             .defineListAllowEmpty("armor_for_slot_chainmailed_basic",List.of("head:1","chest:2","legs:2","feet:1"),BKConfig::validateStringName);
 
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> CHAINMAILED_BLACKLIST = BUILDER
-            .comment("A black list for chainmailed")
+            .comment("A blacklist for armors that can't be chainmailed")
             .defineListAllowEmpty("chainmailed_blacklist", new ArrayList<>(), BKConfig::validateItemName);
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
