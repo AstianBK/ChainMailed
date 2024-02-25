@@ -1,20 +1,18 @@
 package com.TBK.chainmailed.common.mixins;
 
 import com.TBK.chainmailed.common.api.IReinforcedChain;
-import com.TBK.chainmailed.common.sound.CMSounds;
+import com.TBK.chainmailed.common.config.BKConfig;
+import com.TBK.chainmailed.common.sound.BKSounds;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
@@ -28,7 +26,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.extensions.IForgePlayer;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,8 +33,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.function.Consumer;
 
 @Mixin(ServerPlayer.class)
 public abstract class PlayerMixin extends Player {
@@ -130,7 +125,9 @@ public abstract class PlayerMixin extends Player {
                                             livingentity.knockback((double)0.4F, (double)Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
                                             livingentity.hurt(DamageSource.playerAttack(this), f3);
                                         }else{
-                                            livingentity.playSound(CMSounds.CHAINMAIL_BLOCK.get());
+                                            if(BKConfig.soundChainmailedBlock){
+                                                livingentity.playSound(BKSounds.CHAINMAIL_BLOCK.get());
+                                            }
                                         }
                                     }
                                 }

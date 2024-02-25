@@ -20,9 +20,6 @@ public class AttributeEvent {
         event.add(EntityType.HUSK,Events.IMPACT_RESISTANCE);
         event.add(EntityType.DROWNED,Events.IMPACT_RESISTANCE);
         event.add(EntityType.ZOMBIE,Events.IMPACT_RESISTANCE);
-
-
-
     }
 
 }
