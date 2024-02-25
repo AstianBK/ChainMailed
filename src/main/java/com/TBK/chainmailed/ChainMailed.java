@@ -1,7 +1,6 @@
 package com.TBK.chainmailed;
 
 import com.TBK.chainmailed.common.Events;
-import com.TBK.chainmailed.common.SyncAttribute;
 import com.TBK.chainmailed.common.config.BKConfig;
 import com.TBK.chainmailed.common.sound.BKSounds;
 import com.TBK.chainmailed.network.PacketHandler;
@@ -26,7 +25,6 @@ public class ChainMailed
     public ChainMailed() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.addListener(SyncAttribute::onTickEvent);
         BKSounds.register(eventBus);
         PacketHandler.registerMessages();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BKConfig.SPEC);

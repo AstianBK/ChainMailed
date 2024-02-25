@@ -22,11 +22,6 @@ public class PacketHandler {
 
         MOD_CHANNEL=channel;
 
-        channel.messageBuilder(PacketSyncSlashResistToClient.class,index++)
-                .decoder(PacketSyncSlashResistToClient::new).
-                encoder(PacketSyncSlashResistToClient::toBytes)
-                .consumerNetworkThread(PacketSyncSlashResistToClient::handle).add();
-
     }
 
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {

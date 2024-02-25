@@ -3,10 +3,7 @@ package com.TBK.chainmailed.common;
 import com.TBK.chainmailed.common.api.IReinforcedChain;
 import com.TBK.chainmailed.common.config.BKConfig;
 import com.TBK.chainmailed.common.sound.BKSounds;
-import com.TBK.chainmailed.network.PacketHandler;
-import com.TBK.chainmailed.network.PacketSyncSlashResistToClient;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -16,7 +13,6 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,7 +28,6 @@ public class Events {
             Player player = event.getEntity();
             ItemStack itemStack1 = player.getOffhandItem();
             CompoundTag nbt = itemStack.getOrCreateTag();
-            System.out.print("\ntengo :\n"+BKConfig.impactResistanceValueChainmailedBasic);
             if(!BKConfig.chainMailedBlackList.contains(itemStack.getItem())){
                 if(armor instanceof IReinforcedChain reinforcedChain && !reinforcedChain.hasChainmailed(nbt) &&
                         itemStack1.getItem() instanceof ArmorItem armorItem && armor.getMaterial()!=ArmorMaterials.CHAIN
@@ -50,15 +45,6 @@ public class Events {
                 }
             }
         }
-    }
-    @SubscribeEvent
-    public static void onTickEvent(TickEvent.LevelTickEvent event){
-        event.level.players().forEach(player -> {
-            if (player instanceof ServerPlayer serverPlayer && serverPlayer.getAttribute(Events.IMPACT_RESISTANCE) != null) {
-                float souls = (float) serverPlayer.getAttribute(Events.IMPACT_RESISTANCE).getValue();
-                PacketHandler.sendToPlayer(new PacketSyncSlashResistToClient(souls), serverPlayer);
-            }
-        });
     }
 
     @SubscribeEvent
