@@ -5,7 +5,9 @@ import com.TBK.chainmailed.common.config.BKConfig;
 import com.TBK.chainmailed.common.sound.BKSounds;
 import com.TBK.chainmailed.network.PacketHandler;
 import com.mojang.logging.LogUtils;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -33,4 +35,6 @@ public class ChainMailed
         ATTRIBUTES.register("impact_resistance",()-> Events.IMPACT_RESISTANCE);
         ATTRIBUTES.register(eventBus);
     }
+
+
 }

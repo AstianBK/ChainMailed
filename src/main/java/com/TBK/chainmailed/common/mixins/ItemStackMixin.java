@@ -64,22 +64,4 @@ public abstract class ItemStackMixin {
             }
         }
     }
-
-    public ItemStack getArmorForSlot(EquipmentSlot slot){
-        switch (slot){
-            case HEAD -> {
-                return new ItemStack(Items.CHAINMAIL_HELMET);
-            }
-            case CHEST -> {
-                return new ItemStack(Items.CHAINMAIL_CHESTPLATE);
-            }
-            case LEGS -> {
-                return new ItemStack(Items.CHAINMAIL_LEGGINGS);
-            }
-            case FEET -> {
-                return new ItemStack(Items.CHAINMAIL_BOOTS);
-            }
-        }
-        return ItemStack.EMPTY;
-    }
 }
